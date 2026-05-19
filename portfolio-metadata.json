@@ -1,0 +1,12 @@
+{
+  "repo": "knowledge-based-weather-recommendation-system",
+  "title": "Knowledge Based Weather Recommendation System",
+  "category": "AI-ML-Projects",
+  "description": "A knowledge-based system notebook combining weather/country datasets, graph-like knowledge representation, Gradio, and ML classification.",
+  "topics": [
+    "knowledge-based-system",
+    "machine-learning",
+    "gradio",
+    "weather-data"
+  ]
+}
