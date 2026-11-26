@@ -1,7 +1,10 @@
+folium
 gradio
 matplotlib
+networkx
 numpy
 pandas
+requests
 scikit-learn
 seaborn
 spacy
