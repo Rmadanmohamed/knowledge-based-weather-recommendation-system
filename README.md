@@ -1,5 +1,7 @@
 # Knowledge-Based Weather Recommendation System
 
+> **Phase 2 repair branch:** Set `WEATHER_DATA_DIR` to the directory containing the original `GlobalWeatherRepository.csv` and `world_countries_dataset.csv`. The latter is reused by the final Gradio section with required `Country`, `Language`, `Population`, `Currency`, `Region` columns; the unavailable original tuples module is not fabricated. The branch corrects selected clearly wrong capital relations, deduplicates real triples, separates generated synthetic triples, and fits the experimental relation classifier on the training TSV only. These changes do not constitute a comprehensive authoritative geography or live-weather validation. The spaCy model and original CSVs remain required. Full runtime validation is pending; the following historical audit describes the original baseline.
+
 ## Overview and problem statement
 
 Prototype geographic knowledge queries using relation classification, weather CSV lookup and country information retrieval with a Gradio interface. It is a notebook experiment, not a live forecast service.
