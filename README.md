@@ -1,50 +1,64 @@
-# Knowledge Based Weather Recommendation System
+# Knowledge-Based Weather Recommendation System
 
-## Overview
-A knowledge-based system notebook combining weather/country datasets, graph-like knowledge representation, Gradio, and ML classification.
+## Overview and problem statement
 
-## Problem Statement
-Weather and country knowledge can be organized into explainable recommendation and query workflows.
+Prototype geographic knowledge queries using relation classification, weather CSV lookup and country information retrieval with a Gradio interface. It is a notebook experiment, not a live forecast service.
 
-## Features
-- Knowledge graph style data loading
-- Weather and country dataset usage
-- Decision tree classification
-- Gradio interface prototype
+## Technology stack and prerequisites
 
-## Tech Stack
-- Python
-- Pandas
-- Scikit-learn
-- spaCy
-- Gradio
+Python 3 and a notebook runtime are required (exact Python version unspecified). [requirements.txt](requirements.txt) declares gradio, matplotlib, numpy, pandas, scikit-learn, seaborn, spacy; no exact versions are pinned. Additional imports not directly declared: networkx, folium, requests. Local Jupyter must be installed separately. No GPU requirement is documented.
 
-## Dataset
-- GlobalWeatherRepository.csv
-- world_countries_dataset.csv
+## Project structure
 
-## Models / Algorithms
-- Decision Tree
-- Knowledge-based recommendation rules
+- [knowledge-based-weather-recommendation-system.ipynb](notebooks/knowledge-based-weather-recommendation-system.ipynb) — notebook source.
+- [requirements.txt](requirements.txt) — dependencies.
+- [LICENSE](LICENSE) — repository license, separate from dataset rights.
 
-## Results
-The notebook includes model accuracy evaluation code. No final metric was extracted as a verified result.
+## Dataset and preprocessing
 
-## Project Structure
-- notebooks/
-  - knowledge-based-weather-recommendation-system.ipynb
+The notebook creates city/country relation triples (including synthetic City/Country entries) and TSV splits in `/content/kg_project_data`. Separate sections require `/content/GlobalWeatherRepository.csv` (`location_name`, `country`, `temperature_celsius`, `condition_text`) and `/content/world_countries_dataset.csv` (`Country`, `Language`, `Currency`, etc.). The final Gradio section also imports a missing `country_data_tuples` module. External data sources and licenses are unspecified.
 
-## How to Run
-- `pip install -r requirements.txt`
-- `jupyter notebook notebooks/knowledge-based-weather-recommendation-system.ipynb`
+## Model and workflow
 
-## Screenshots / Demo
-Screenshots or demo media can be added after deployment.
+NetworkX visualizes relation triples; label-encoded entity pairs are classified by a decision tree using an 80/20 split (seed 42) from the training triples. Weather lookup filters CSV rows by city. spaCy `en_core_web_sm` tokenizes questions and matching code searches country, language or currency values. Folium displays example map markers.
 
-## Future Improvements
-- Separate knowledge graph construction from UI code
-- Add examples of supported queries
-- Persist recommendations to a clean data file
+## Installation and execution
+
+```bash
+git clone https://github.com/Rmadanmohamed/knowledge-based-weather-recommendation-system.git
+cd knowledge-based-weather-recommendation-system
+python -m venv .venv
+```
+
+Activate with `source .venv/bin/activate` (Linux/macOS) or `.venv\Scripts\Activate.ps1` (Windows PowerShell).
+
+```bash
+python -m pip install -r requirements.txt
+python -m pip install jupyter networkx folium requests
+python -m spacy download en_core_web_sm
+jupyter notebook notebooks/knowledge-based-weather-recommendation-system.ipynb
+```
+
+You can also open the notebooks in Google Colab. For local execution, adjust Colab-specific data paths in a local working copy and place data at the expected paths. Dependencies are not locked and a clean run has not been verified.
+
+## Environment variables
+
+No environment variables are required by the reviewed notebook code. Data paths are set within cells.
+
+## Usage, evaluation and limitations
+
+Run sections independently; input loops exit with `exit`. Try the country query `Tell me about Egypt` after providing the data. The Gradio interface uses `interface.launch()` but requires the missing tuples module and a working import path. No numeric accuracy output is saved. The hardcoded triples contain geographic inaccuracies and synthetic examples; weather records are static, not current forecasts. Verify facts and source data before relying on answers.
+
+## Testing and validation
+
+No automated test suite is included. Run the relevant notebook cells with the required dataset and inspect the generated outputs. Training and tests were not executed during this documentation audit.
+
+## Screenshots and demo
+
+No standalone screenshots or verified live demo were found. Visualizations are generated by executing notebook cells.
 
 ## Author
-Ramadan Mohamed Hassan
+
+**Ramadan Mohamed Hassan** — AI Engineer | AI Researcher | AI Automation | LLM & RAG Systems | Machine Learning
+
+[Portfolio](https://ramadan-ai-portfolio.vercel.app/) · [LinkedIn](https://www.linkedin.com/in/ramadan-mohamed-89085a366/) · [GitHub](https://github.com/Rmadanmohamed) · [Email](mailto:ramadanmohameddd3@gmail.com)
